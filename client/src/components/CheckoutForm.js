@@ -8,6 +8,7 @@ const initialValue = {
   city: "",
   state: "",
   zip: "",
+  showSuccessMessage: false
 };
 
 // This form should be handled by a "useForm" custom hook
@@ -15,15 +16,16 @@ const initialValue = {
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, handleChanges] = useForm(initialValue);
+  //put showSuccess state into useForm
+  // const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [values, handleChanges, handleSubmit] = useForm(initialValue);
 
  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowSuccessMessage(true);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setShowSuccessMessage(true);
+  // };
 
   return (
     <>
@@ -71,7 +73,7 @@ const CheckoutForm = (props) => {
         <button data-testid="submit">Checkout</button>
       </form>
 
-      {showSuccessMessage && (
+      {values.showSuccessMessage && (
         <div className="success-message" data-testid="successMessage">
           <p>
             You have ordered some plants! Woo-hoo! <span role="img">🎉</span>
